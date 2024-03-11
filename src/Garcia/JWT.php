@@ -67,7 +67,14 @@ final class JWT
         }
 
         // Decode the payload
-        return json_decode($this->based64UrlDecode($payload));
+        $payload = json_decode($this->based64UrlDecode($payload));
+
+        // let's make sure the token is not expired
+        if ($payload->exp < time()) {
+            throw new Exception('Token has expired');
+        }
+
+        return $payload;
     }
 
     /**
