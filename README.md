@@ -1,4 +1,17 @@
-# JTW
+## Table of Contents
+- [Description](#description)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Author](#author)
+
+## Requirements
+- PHP 7.4 or higher
+- Composer
+
+
+# JWT
 - A lightweight and straightforward PHP library for working with JSON Web Tokens (JWT). Compatible with any PHP framework, application, or library.
 
 ## Description
@@ -28,18 +41,24 @@ $jwt = new JWT('secret');
 
 $payload = [
     'user_id' => 1,
-    'username ' => 'johndoe',
+    'username' => 'johndoe',
     'email' => 'testing@testing.com',
     'role' => 'admin'
 ];
 
 $token = $jwt->encode($payload);
 
-echo "$token \n\n";
+ echo "$token \n\n";
+ 
+// $decoded = $jwt->decode($token);
+// var_dump($decoded);
 
-$decoded = $jwt->decode($token);
-
-var_dump($decoded);
+try {
+    $decoded = $jwt->decode($token);
+    var_dump($decoded);
+} catch (\Exception $e) {
+    echo "Token invalid: " . $e->getMessage();
+}
 ```
 
 ## License
@@ -47,4 +66,4 @@ var_dump($decoded);
 
 ## Author
 - [GitHub](https://github.com/jgarc186)
-- [LinkedIn](www.linkedin.com/in/jgarc186)
+- [LinkedIn](http://www.linkedin.com/in/jgarc186)
